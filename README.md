@@ -101,7 +101,7 @@ Example output:
 }
 ```
 
-Returns `{"spotify_running": true}` if nothing is being played.
+Returns `{"spotify_running": false}` if nothing is being played.
 
 ## Example Usage
 
