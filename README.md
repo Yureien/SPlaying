@@ -1,109 +1,54 @@
 # SPlaying
 SPlaying: Spotify now Playing, get your current playing song easily!
 
+New feature: Get your top artists or tracks too!
+
 **API URL:** [splaying.sohamsen.workers.dev](https://splaying.sohamsen.workers.dev) (Yes, the homepage will just redirect to here)
 
 ## Registration
 
-Go to [registration page](https://splaying.sohamsen.workers.dev/register/) and login with your Spotify OAuth.
+Go to [registration page](https://splaying.sohamsen.workers.dev/register) and login with your Spotify OAuth.
 
 **Remember to save the user ID you get during registration since there is no way to get it back if lost!**
+I don't save any identifying information (except IP address, for blocking spam).
 
-## Usage
+## API Reference
 
-```
-GET https://splaying.sohamsen.workers.dev/np/?uid=<UID GENERATED IN LAST STEP>
-```
+To get the response format, either check the code or just try it out. It's too big to neatly fit in here.
 
-Example output:
-```json
-{
-  "spotify_running": true,
-  "timestamp": 1611507165310,
-  "progress_ms": 179278,
-  "is_playing": true,
-  "item": {
-    "album": {
-      "album_type": "album",
-      "artists": [
-        {
-          "external_urls": {
-            "spotify": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
-          },
-          "href": "https://api.spotify.com/v1/artists/6XyY86QOPPrYVGvF9ch6wz",
-          "id": "6XyY86QOPPrYVGvF9ch6wz",
-          "name": "Linkin Park",
-          "type": "artist",
-          "uri": "spotify:artist:6XyY86QOPPrYVGvF9ch6wz"
-        }
-      ],
-      "external_urls": {
-        "spotify": "https://open.spotify.com/album/5Eevxp2BCbWq25ZdiXRwYd"
-      },
-      "href": "https://api.spotify.com/v1/albums/5Eevxp2BCbWq25ZdiXRwYd",
-      "id": "5Eevxp2BCbWq25ZdiXRwYd",
-      "images": [
-        {
-          "height": 640,
-          "url": "https://i.scdn.co/image/ab67616d0000b273145e1cf12538f5666511237d",
-          "width": 640
-        },
-        {
-          "height": 300,
-          "url": "https://i.scdn.co/image/ab67616d00001e02145e1cf12538f5666511237d",
-          "width": 300
-        },
-        {
-          "height": 64,
-          "url": "https://i.scdn.co/image/ab67616d00004851145e1cf12538f5666511237d",
-          "width": 64
-        }
-      ],
-      "name": "One More Light",
-      "release_date": "2017-05-19",
-      "release_date_precision": "day",
-      "total_tracks": 10,
-      "type": "album",
-      "uri": "spotify:album:5Eevxp2BCbWq25ZdiXRwYd"
-    },
-    "artists": [
-      {
-        "external_urls": {
-          "spotify": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
-        },
-        "href": "https://api.spotify.com/v1/artists/6XyY86QOPPrYVGvF9ch6wz",
-        "id": "6XyY86QOPPrYVGvF9ch6wz",
-        "name": "Linkin Park",
-        "type": "artist",
-        "uri": "spotify:artist:6XyY86QOPPrYVGvF9ch6wz"
-      }
-    ],
-    "disc_number": 1,
-    "duration_ms": 217066,
-    "explicit": false,
-    "external_ids": {
-      "isrc": "USWB11700224"
-    },
-    "external_urls": {
-      "spotify": "https://open.spotify.com/track/1KvyBpAxgllKW7bQb0GYCR"
-    },
-    "href": "https://api.spotify.com/v1/tracks/1KvyBpAxgllKW7bQb0GYCR",
-    "id": "1KvyBpAxgllKW7bQb0GYCR",
-    "is_local": false,
-    "is_playable": true,
-    "name": "Halfway Right",
-    "popularity": 55,
-    "preview_url": "https://p.scdn.co/mp3-preview/780aca82ee9a9152fbd1a2c7f6a78bb2b2aef7ef?cid=9d1c097cd6db4d9984cfea4b72e8e4ee",
-    "track_number": 8,
-    "type": "track",
-    "uri": "spotify:track:1KvyBpAxgllKW7bQb0GYCR"
-  }
-}
-```
+### Get Current Playing Song
 
-Returns `{"spotify_running": false}` if nothing is being played.
+**URL:** `/api/nowplaying/<token>`
 
-## Example Usage
+`<token>` is the token you got during registration.
+
+**Method:** `GET`
+
+**URL Params:**
+
+| Parameter | Description | Required | Allowed Values |
+| --- | --- | --- | --- |
+| `full` | Whether to return the full response (as obtained from Spotify, excluding some privacy-violating information) or a shortened version | No | `false` (default), `true` |
+
+### Get Top Artists or Tracks
+
+**URL:** `/api/top/<token>`
+
+`<token>` is the token you got during registration.
+
+**Method:** `GET`
+
+**URL Params:**
+
+| Parameter | Description | Required | Allowed Values |
+| --- | --- | --- | --- |
+| `type` | Whether to return the top artists or tracks | Yes | `artists`, `tracks` |
+| `full` | Whether to return the full response (as obtained from Spotify, excluding some privacy-violating information) or a shortened version | No | `false` (default), `true` |
+| `limit` | Number of results to return | No | Any integer between 1 and 50 (default: 20) |
+| `time_range` | Time range for the results | No | `long_term`, `medium_term` (default), `short_term` |
+| `offset` | Index of the first result to return | No | Any integer >= 0 (default: 0) |
+
+## Live Example
 
 Shameless self promotion of my site: [sohamsen.me](https://sohamsen.me/)
 

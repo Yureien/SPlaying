@@ -1,0 +1,25 @@
+name = "splaying-dev"
+main = "src/index.ts"
+compatibility_date = "2023-05-16"
+usage_model = "bundled"
+
+[triggers]
+crons = []
+
+[vars]
+URL = "http://localhost:8787"
+
+[env.production]
+name = "splaying"
+[env.production.vars]
+URL = "https://splaying.sohamsen.workers.dev"
+
+
+[[kv_namespaces]]
+preview_id = "fba42c16931341019b34442c5fab8b36"
+id = "18f02149c8bf4c7fa2c78aa019f82920"
+binding = "TOKENS"
+
+# Secrets:
+# SPOTIFY_CLIENT_ID
+# SPOTIFY_CLIENT_SECRET
