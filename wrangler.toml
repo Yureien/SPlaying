@@ -9,14 +9,16 @@ crons = []
 [vars]
 URL = "http://localhost:8787"
 
+[[kv_namespaces]]
+preview_id = "fba42c16931341019b34442c5fab8b36"
+id = "18f02149c8bf4c7fa2c78aa019f82920"
+binding = "TOKENS"
+
 [env.production]
 name = "splaying"
 [env.production.vars]
 URL = "https://splaying.sohamsen.workers.dev"
-
-
-[[kv_namespaces]]
-preview_id = "fba42c16931341019b34442c5fab8b36"
+[[env.production.kv_namespaces]]
 id = "18f02149c8bf4c7fa2c78aa019f82920"
 binding = "TOKENS"
 
