@@ -43,6 +43,6 @@ export async function validateToken(req: IRequest, env: Env) {
 
     await env.TOKENS.put(token, JSON.stringify(data));
   }
-  
+
   req.data = data;
 }

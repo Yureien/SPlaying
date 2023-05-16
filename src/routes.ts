@@ -82,11 +82,7 @@ router.get("/callback", async (req: IRequest & Request, env: Env) => {
     <br><br>
     <b>Please keep this safe as it cannot be obtained again!</b>
     <br><br>
-    Now Playing API: <a href="${env.URL}/api/np/${token}">${env.URL}/api/np/${token}</a>
-    <br>
-    Top Tracks API: <a href="${env.URL}/api/top/${token}?type=tracks">${env.URL}/api/top/${token}?type=tracks</a>
-    <br>
-    Top Artists API: <a href="${env.URL}/api/top/${token}?type=artists">${env.URL}/api/top/${token}?type=artists</a>`,
+    Checkout the <a href="https://github.com/Yureien/SPlaying">documentation</a> for more information on how to use the API.`,
     {
       status: 200,
       headers: {
